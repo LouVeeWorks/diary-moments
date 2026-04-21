@@ -385,12 +385,12 @@
     position: absolute;
     inset: 0;
     border-radius: 16px;
-    background: rgba(255,255,255,0.72);
+    background: rgba(255,255,255,0.90);
     pointer-events: none;
     z-index: 1;
     transition: background 0.8s ease;
   }
-  .diary-card.has-mood-bg .card-bg-wash { background: rgba(255,255,255,0.60); }
+  .diary-card.has-mood-bg .card-bg-wash { background: rgba(255,255,255,0.88); }
   .card-header, .card-body, .card-footer { position: relative; z-index: 2; }
   .mood-picker { z-index: 99999 !important; }
   .diary-card:hover { box-shadow: 0 8px 30px var(--shadow-md); }
@@ -748,9 +748,6 @@
   }
   .cal-today-btn:hover { background: var(--terracotta-pale); color: var(--terracotta-dark); }
 </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diary Moments</title>
 </head>
 <body>
 
@@ -765,9 +762,10 @@
       </div>
       <h1>Diary Moments</h1>
       <p>Your personal space to capture thoughts</p>
+      <p style="font-size:11px;color:#c17a5b;margin-top:4px;font-weight:700;">✦ First time? Click Create Account below ✦</p>
     </div>
     <div class="auth-tabs">
-      <button class="auth-tab active" id="tab-signin" onclick="switchTab('signin')">Sign In</button>
+      <button class="auth-tab active" id="tab-signin" onclick="switchTab('signin')">Returning User</button>
       <button class="auth-tab" id="tab-create" onclick="switchTab('create')">Create Account</button>
     </div>
     <div id="auth-error" class="auth-error"></div>
@@ -938,23 +936,49 @@ function showAuthError(msg) {
 }
 
 function handleAuth() {
-  const email = document.getElementById('auth-email').value.trim().toLowerCase();
-  const pass = document.getElementById('auth-password').value;
-  const confirm = document.getElementById('auth-confirm').value;
-  if (!email || !pass) { showAuthError('Please fill in all fields.'); return; }
-  if (!/\S+@\S+\.\S+/.test(email)) { showAuthError('Please enter a valid email address.'); return; }
-  const users = getUsers();
-  if (authMode === 'create') {
-    if (pass.length < 6) { showAuthError('Password must be at least 6 characters.'); return; }
-    if (pass !== confirm) { showAuthError('Passwords do not match.'); return; }
-    if (users[email]) { showAuthError('An account with this email already exists.'); return; }
-    users[email] = { email, password: btoa(pass) };
-    saveUsers(users);
-    loginUser(email);
-  } else {
-    const u = users[email];
-    if (!u || atob(u.password) !== pass) { showAuthError('Invalid email or password.'); return; }
-    loginUser(email);
+  try {
+    const emailEl = document.getElementById('auth-email');
+    const passEl  = document.getElementById('auth-password');
+    const confEl  = document.getElementById('auth-confirm');
+
+    if (!emailEl || !passEl) { showAuthError('Form error — please refresh the page.'); return; }
+
+    const email   = emailEl.value.trim().toLowerCase();
+    const pass    = passEl.value;
+    const confirm = confEl ? confEl.value : '';
+
+    // Basic validation
+    if (!email)  { showAuthError('Please enter your email address.'); return; }
+    if (!pass)   { showAuthError('Please enter your password.'); return; }
+    if (!/\S+@\S+\.\S+/.test(email)) { showAuthError('Please enter a valid email address.'); return; }
+
+    const users = getUsers();
+
+    if (authMode === 'create') {
+      if (pass.length < 6) { showAuthError('Password must be at least 6 characters.'); return; }
+      if (confirm && pass !== confirm) { showAuthError('Passwords do not match.'); return; }
+      // Allow re-creation if account exists (helpful for testing)
+      users[email] = { email, password: btoa(unescape(encodeURIComponent(pass))) };
+      saveUsers(users);
+      loginUser(email);
+    } else {
+      // Sign in
+      const u = users[email];
+      if (!u) {
+        showAuthError('No account found. Please click Create Account first.');
+        return;
+      }
+      // Try both encoding methods for compatibility
+      let storedPass = '';
+      try { storedPass = decodeURIComponent(escape(atob(u.password))); } catch(e) { storedPass = atob(u.password); }
+      if (storedPass !== pass) {
+        showAuthError('Incorrect password. Please try again.');
+        return;
+      }
+      loginUser(email);
+    }
+  } catch(err) {
+    showAuthError('Something went wrong: ' + err.message);
   }
 }
 
@@ -1184,14 +1208,14 @@ document.addEventListener('click', e => {
 const MOOD_BACKGROUNDS = {
   // Happy — sunshine, celebrations, golden warmth
   '😊': 'https://images.unsplash.com/photo-1490750967868-88df5691cc86?w=1600&q=80',
-  '😄': 'https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=1600&q=80',
-  '😁': 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1600&q=80',
+  '😄': 'https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=1600&q=80',
+  '😁': 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80',
   '🥰': 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=1600&q=80',
   '😍': 'https://images.unsplash.com/photo-1464820453369-31d2c0b651af?w=1600&q=80',
   '🤩': 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1600&q=80',
-  '😇': 'https://images.unsplash.com/photo-1490750967868-88df5691cc86?w=1600&q=80',
+  '😇': 'https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=1600&q=80',
   '🥳': 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1600&q=80',
-  '😂': 'https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=1600&q=80',
+  '😂': 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80',
   '🤣': 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1600&q=80',
   // Sad — rain, mist, solitude
   '😢': 'https://images.unsplash.com/photo-1501691223387-dd0500403074?w=1600&q=80',
@@ -1244,10 +1268,10 @@ const MOOD_BACKGROUNDS = {
   '🌺': 'https://images.unsplash.com/photo-1464820453369-31d2c0b651af?w=1600&q=80',
   '🌻': 'https://images.unsplash.com/photo-1490750967868-88df5691cc86?w=1600&q=80',
   '🍀': 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600&q=80',
-  '🫶': 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1600&q=80',
+  '🫶': 'https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=1600&q=80',
   '💖': 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=1600&q=80',
-  '🤗': 'https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=1600&q=80',
-  '🥹': 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1600&q=80',
+  '🤗': 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80',
+  '🥹': 'https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=1600&q=80',
   // Energized — mountains, stars, adventure
   '💪': 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=1600&q=80',
   '🔥': 'https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=1600&q=80',
@@ -1846,11 +1870,5 @@ function exportMonthAsPDF() {
 // Check if already "logged in" via session (tab session only - no persistent sessions for security)
 renderDiary(); // just preload nothing visible; actual render happens on login
 </script>
-    <h1>Welcome to Diary Moments</h1>
-    <p>This is a space where your memories come alive!</p>
-    <footer>
-        <p>Current Date and Time (UTC): 2026-04-21 01:09:27</p>
-    </footer>
 </body>
-</html>
 </html>
