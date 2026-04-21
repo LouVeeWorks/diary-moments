@@ -1,0 +1,106 @@
+LOUVEEWORKS PROPRIETARY SOFTWARE LICENSE AGREEMENT
+Diary Moments — Copyright © 2026 Louise Villanova / Louveeworks
+All Rights Reserved.
+
+
+1. OWNERSHIP
+
+This software, including all source code, design, layout, images, written
+content, and associated materials (collectively, "the Software"), is the
+exclusive intellectual property of Louise Villanova, operating as Louveeworks
+("the Owner"). The Software is protected by copyright law and international
+treaties.
+
+
+2. GRANT OF LICENSE
+
+Upon lawful purchase or authorized access through an official Louveeworks
+sales channel (such as the Louveeworks Stan Store), the Owner grants the
+purchaser ("the User") a non-exclusive, non-transferable, revocable license
+to use the Software for personal, non-commercial purposes only.
+
+This license permits the User to:
+  (a) Access and use the Software through the provided web address for
+      personal journaling, tracking, or equivalent private use.
+  (b) Download personal entries, photos, and PDF exports generated from
+      their own use of the Software.
+
+
+3. RESTRICTIONS
+
+The User may NOT, under any circumstances, without express written
+permission from the Owner:
+
+  (a) Copy, reproduce, duplicate, or redistribute the Software or any
+      portion of its source code, design, or assets.
+  (b) Resell, sublicense, rent, lease, lend, or otherwise transfer the
+      Software or access to it to any third party.
+  (c) Modify, adapt, translate, reverse-engineer, decompile, or create
+      derivative works based on the Software.
+  (d) Remove, alter, or obscure any copyright, trademark, or attribution
+      notices contained within the Software.
+  (e) Publish, host, or make the Software available on any website,
+      platform, repository, or marketplace other than those authorized
+      by the Owner.
+  (f) Use the Software, or any portion of it, as the basis for any
+      competing product, application, or service.
+  (g) Use the Software for any unlawful purpose or in any manner
+      inconsistent with this License.
+
+
+4. PRIVACY AND USER DATA
+
+The Software stores all User diary entries, photos, and account
+information locally in the User's own web browser. The Owner does not
+collect, transmit, receive, or have access to any User content. Users
+are solely responsible for backing up their own entries.
+
+
+5. NO WARRANTY
+
+The Software is provided "AS IS" without warranty of any kind, express
+or implied, including but not limited to warranties of merchantability,
+fitness for a particular purpose, or non-infringement. The Owner does
+not warrant that the Software will be uninterrupted, error-free, or
+free of harmful components.
+
+
+6. LIMITATION OF LIABILITY
+
+In no event shall the Owner be liable for any direct, indirect,
+incidental, special, consequential, or punitive damages arising out of
+or in connection with the use or inability to use the Software,
+including but not limited to loss of data, loss of profits, or business
+interruption, even if advised of the possibility of such damages.
+
+
+7. TERMINATION
+
+This license is effective until terminated. The Owner reserves the
+right to terminate this license immediately, without notice, if the
+User violates any term of this agreement. Upon termination, the User
+must cease all use of the Software and destroy any copies in their
+possession.
+
+
+8. GOVERNING LAW
+
+This License shall be governed by and construed in accordance with the
+laws of the United States of America and the state in which the Owner
+resides, without regard to its conflict of law provisions.
+
+
+9. CONTACT
+
+For licensing inquiries, commercial use requests, or permission to use
+any portion of the Software beyond the scope of this license, please
+contact Louveeworks directly through the official Louveeworks Stan Store
+or associated channels.
+
+
+────────────────────────────────────────────────────────────────────────
+By using the Software, you acknowledge that you have read this License,
+understand it, and agree to be bound by its terms and conditions.
+────────────────────────────────────────────────────────────────────────
+
+© 2026 Louise Villanova / Louveeworks. All Rights Reserved.
